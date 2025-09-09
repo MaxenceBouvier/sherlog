@@ -98,7 +98,8 @@ def main(argv: Optional[list[str]] = None) -> int:
     snippet = extract_failure_window(text, window=args.window)
     findings = apply_rules(snippet, args.os)
 
-    if args.no-ml:
+    # argparse converts '--no-ml' to attribute 'no_ml'
+    if args.no_ml:
         out = rules_only_text(findings)
     else:
         try:
