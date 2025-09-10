@@ -9,7 +9,7 @@ description = "Sherlog — your build-log whisperer. Parse build logs and get ac
 readme = "README.md"
 license = {text = "MIT"}
 authors = [{name = "Maxence Bouvier", email = "maxence.bouvier.pro@gmail.com"}]
-requires-python = ">=3.13"
+requires-python = ">=3.10"
 dependencies = [
   "regex>=2023.10.3",
   "rich>=13.7.0",
@@ -20,6 +20,8 @@ ml = [
   "transformers>=4.44.0",
   "accelerate>=0.33.0",
   "torch>=2.2,<3",
+]
+ml-gpu = [
   "flash-attn>=2.6.0",
 ]
 test = [
@@ -33,4 +35,9 @@ sherlog = "sherlog.cli:main"
 packages = ["src/sherlog"]
 
 [tool.uv.extra-build-dependencies]
+# Ensure torch is available in the build env when building flash-attn wheels
+# (some versions attempt to import torch at build time but don't declare it).
 flash-attn = ["torch"]
+# Some package managers normalize the project name with underscores
+flash_attn = ["torch"]
+sherlog = ["hatchling"]

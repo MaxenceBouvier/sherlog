@@ -6,7 +6,7 @@
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-blue.svg">
   </a>
   <a href="#">
-    <img alt="Python >=3.13" src="https://img.shields.io/badge/python-%3E%3D3.13-blue">
+    <img alt="Python >=3.10" src="https://img.shields.io/badge/python-%3E%3D3.10-blue">
   </a>
   <a href="https://docs.astral.sh/uv/concepts/tools/">
     <img alt="Packaging: uv tools" src="https://img.shields.io/badge/packaging-uv%20tools-8A2BE2">
@@ -22,7 +22,7 @@
 ---
 
 **Sherlog** is a tiny, local‑first CLI that reads the many layers of noisy build and install logs and tells you exactly what to do 😄.  
-Requires Python 3.13+ 🐍
+Requires Python 3.10+ 🐍
 
 - 🧐 Sniffs the real error from long logs  
 - 🤖 Explains it with a local Small Language Model (Hugging Face) — or falls back to rule‑based hints  
@@ -69,6 +69,17 @@ uv tool install --from . sherlog
 
 # With ML extras (Transformers/Accelerate/Torch):
 uv tool install './.[ml]'
+
+# Optional GPU extras (FlashAttention) for advanced CUDA setups:
+# FlashAttention and PyTorch GPU wheels are easiest with Python 3.10–3.12.
+# Force a compatible Python for the tool env if needed:
+# uv python install 3.12
+# uv tool install -p 3.12 './.[ml,ml-gpu]'
+
+# Optional GPU extras (FlashAttention) for advanced CUDA setups:
+# This may compile native extensions and requires a matching CUDA/PyTorch toolchain.
+# If unsure, skip this or add later.
+# uv tool install './.[ml,ml-gpu]'
 
 # Ensure ~/.local/bin is in PATH (bash example):
 export PATH="$HOME/.local/bin:$PATH"
