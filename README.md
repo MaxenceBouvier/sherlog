@@ -74,12 +74,15 @@ uv tool install './.[ml]'
 # FlashAttention and PyTorch GPU wheels are easiest with Python 3.10–3.12.
 # Force a compatible Python for the tool env if needed:
 # uv python install 3.12
-# uv tool install -p 3.12 './.[ml,ml-gpu]'
-
-# Optional GPU extras (FlashAttention) for advanced CUDA setups:
+# UV_PREVIEW=1 uv tool install -p 3.12 './.[ml,ml-gpu]'
+#
+# The torch build requirement is handled via uv's preview "extra build dependencies"
+# feature. Without `UV_PREVIEW=1`, `flash-attn` may fail to build with
+# `ModuleNotFoundError: No module named 'torch'`. If using another installer,
+# install `torch` first or run with `--no-build-isolation`.
+#
 # This may compile native extensions and requires a matching CUDA/PyTorch toolchain.
 # If unsure, skip this or add later.
-# uv tool install './.[ml,ml-gpu]'
 
 # Ensure ~/.local/bin is in PATH (bash example):
 export PATH="$HOME/.local/bin:$PATH"
