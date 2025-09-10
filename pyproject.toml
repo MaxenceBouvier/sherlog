@@ -42,5 +42,5 @@ preview = true
 # (some versions attempt to import torch at build time but don't declare it).
 flash-attn = ["torch>=2.2,<3"]
 # Some package managers normalize the project name with underscores
-flash_attn = ["torch>=2.2,<3"]
+# flash_attn = ["torch>=2.2,<3"]
 sherlog = ["hatchling"]
