@@ -1,16 +1,17 @@
-# Sherlog — your build‑log whisperer
+# Sherlog — your build‑log whisperer 🕵️‍♂️
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Python >=3.9](https://img.shields.io/badge/python-%3E%3D3.9-blue)](#)
+[![Python >=3.13](https://img.shields.io/badge/python-%3E%3D3.13-blue)](#)
 [![Packaging: uv tools](https://img.shields.io/badge/packaging-uv%20tools-8A2BE2)](https://docs.astral.sh/uv/concepts/tools/)
 [![Tests: pytest](https://img.shields.io/badge/tests-pytest-green)](#)
 [![Status: experimental](https://img.shields.io/badge/status-experimental-orange)](#)
 
-Sherlog is a tiny, local‑first CLI that reads noisy build or install logs and tells you exactly what to do.
+Sherlog is a tiny, local‑first CLI that reads noisy build or install logs and tells you exactly what to do 😄.  
+Requires Python 3.13+ 🐍
 
-- Sniffs the real error from long logs.
-- Explains it with a local Small Language Model (Hugging Face) — or falls back to rule‑based hints.
-- Prints copy‑paste fixes per OS.
+- Sniffs the real error from long logs 🧐
+- Explains it with a local Small Language Model (Hugging Face) — or falls back to rule‑based hints 🤖
+- Prints copy‑paste fixes per OS 🛠️
 
 ## Install (global via `uv`)
 
@@ -87,7 +88,7 @@ sherlog examples/sample.log --model microsoft/phi-3-mini-4k-instruct --os ubuntu
 
 ## Contributing
 
-Contributions welcome! If you’d like to add rules, improve the CLI, or enhance docs:
+Contributions welcome! If you’d like to add rules, improve the CLI, or enhance docs, we'd love your help 😊:
 
 - Fork and create a feature branch.
 - Add or update tests for behavior changes (`pytest`).
@@ -97,17 +98,16 @@ Contributions welcome! If you’d like to add rules, improve the CLI, or enhance
 Local dev setup and tests:
 
 ```bash
-uv pip install -e '.[test]'
-uv run -m pytest -q
+uv python install 3.13  # one-time
+uv run -p 3.13 --extra test -m pytest -q
 ```
 
 ## Tests (pytest)
 
-Run tests locally with pytest. The simplest route is to install the project in editable mode with the `test` extra and then run pytest via `uv`:
+Run tests locally with pytest. The simplest route is to ensure Python 3.13 is available and run:
 
 ```bash
-uv pip install -e '.[test]'
-uv run -m pytest -q
+uv run -p 3.13 --extra test -m pytest -q
 ```
 
 ## Models (local SLMs)
@@ -133,8 +133,10 @@ See Hugging Face’s [SLM overview](https://huggingface.co/blog/jjokah/small-lan
 
 ## Thanks
 
-Inspired by countless hours debugging build logs and by the excellent local SLM ecosystem.
+Inspired by countless hours debugging build logs and by the excellent local SLM ecosystem 🙏
 
 ## License
 
-MIT
+MIT 🙂
+
+Happy debugging! 😄
