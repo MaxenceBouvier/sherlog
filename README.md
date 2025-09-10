@@ -50,7 +50,7 @@ hf auth login
 This avoids permission pitfalls and works across your shells/venvs.
 
 #### Install uv locally [First Time Only]
-```
+```bash
 # Linux/macOS (user-local)
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
@@ -110,6 +110,22 @@ sherlog examples/sample.log --model microsoft/phi-3-mini-4k-instruct --os ubuntu
     If re‑installing globally, set a permissive umask: `sudo sh -c 'umask 022; \
       UV_TOOL_DIR=/usr/local/share/uv/tools UV_TOOL_BIN_DIR=/usr/local/bin \
       uv tool install --from . sherlog'`.
+
+- `uv tool install ...` fails with: `Invalid environment at '~/.local/share/uv/tools/sherlog': missing Python executable .../bin/python3`:
+  - Cause: a corrupted/stale uv tool env directory (leftover from an interrupted install) or the Python runtime was removed.
+  - Fix:
+    ```bash
+    # Remove any user-local broken env and shim
+    uv tool uninstall sherlog || true
+    rm -rf "$HOME/.local/share/uv/tools/sherlog" "$HOME/.local/bin/sherlog"
+
+    # Ensure a Python that satisfies requires-python (3.13+)
+    uv python install 3.13
+
+    # Reinstall (user-local, recommended)
+    uv tool install './.[ml]'   # or: uv tool install --from . sherlog
+    ```
+  - Verify: `command -v sherlog -a` and `sherlog --help`
 
 
 ## Configuration
