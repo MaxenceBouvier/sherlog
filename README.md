@@ -75,11 +75,13 @@ uv tool install './.[ml]'
 # Force a compatible Python for the tool env if needed:
 # uv python install 3.12
 # uv tool install -p 3.12 './.[ml,ml-gpu]'
-
-# Optional GPU extras (FlashAttention) for advanced CUDA setups:
+#
+# The project declares torch as a build dependency for flash-attn, so `uv` will
+# pull in a matching `torch` during the wheel build. If using another installer,
+# install `torch` first or run with `--no-build-isolation`.
+#
 # This may compile native extensions and requires a matching CUDA/PyTorch toolchain.
 # If unsure, skip this or add later.
-# uv tool install './.[ml,ml-gpu]'
 
 # Ensure ~/.local/bin is in PATH (bash example):
 export PATH="$HOME/.local/bin:$PATH"
