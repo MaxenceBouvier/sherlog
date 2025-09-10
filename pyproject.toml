@@ -9,7 +9,7 @@ description = "Sherlog — your build-log whisperer. Parse build logs and get ac
 readme = "README.md"
 license = {text = "MIT"}
 authors = [{name = "Maxence Bouvier", email = "maxence.bouvier.pro@gmail.com"}]
-requires-python = ">=3.9"
+requires-python = ">=3.13"
 dependencies = [
   "regex>=2023.10.3",
   "rich>=13.7.0",
