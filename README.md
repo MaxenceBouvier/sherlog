@@ -45,7 +45,7 @@ hf auth login
 # --> Follow the steps
 ```
 
-### Option A — User‑local (recommended)
+### User‑local install (recommended)
 
 This avoids permission pitfalls and works across your shells/venvs.
 
@@ -76,70 +76,6 @@ export PATH="$HOME/.local/bin:$PATH"
 # Verify
 sherlog --help
 ```
-
-### Option B — System‑wide (via `sudo`)
-
-If you need a system‑wide install, set explicit locations and ensure the
-installed env is world‑readable/executable.
-
-#### Install uv globally [First Time Only]
-```
-curl -LsSf https://astral.sh/uv/install.sh | sudo env UV_INSTALL_DIR="/usr/local/bin" UV_NO_MODIFY_PATH=1 sh
-```
-
-#### Install Sherlog (system‑wide)
-Sherlog is packaged with a `pyproject.toml`, so you can install it system‑wide using `uv tool install`.
-
-```bash
-# Install Sherlog globally (rules + pretty output):
-sudo env UV_TOOL_DIR=/usr/local/share/uv/tools UV_TOOL_BIN_DIR=/usr/local/bin \
-    uv tool install --from . sherlog
-
-# Verify:
-sherlog --help
-```
-
-#### Install with ML support (local SLMs)
-1. To enable the ML step (Transformers, Accelerate, PyTorch), install the optional `ml` extra:
-
-```bash
-sudo env UV_TOOL_DIR=/usr/local/share/uv/tools UV_TOOL_BIN_DIR=/usr/local/bin \
-    uv tool install './.[ml]'
-
-# Example (uses a local small model):
-echo "error: command 'cc' failed: No such file or directory" | \
-  sherlog --os ubuntu --model microsoft/phi-3-mini-4k-instruct
-```
-
-To upgrade later:
-
-```bash
-sudo env UV_TOOL_DIR=/usr/local/share/uv/tools UV_TOOL_BIN_DIR=/usr/local/bin \
-    uv tool upgrade sherlog
-```
-
-For ML installs, upgrade with one of:
-
-```bash
-# If installed from this repo (local path)
-sudo env UV_TOOL_DIR=/usr/local/share/uv/tools UV_TOOL_BIN_DIR=/usr/local/bin \
-    uv tool upgrade './.[ml]'
-
-# If installed from PyPI with extras
-sudo env UV_TOOL_DIR=/usr/local/share/uv/tools UV_TOOL_BIN_DIR=/usr/local/bin \
-    uv tool upgrade sherlog  # preserves original extras
-```
-
-To uninstall:
-
-```bash
-sudo env UV_TOOL_DIR=/usr/local/share/uv/tools UV_TOOL_BIN_DIR=/usr/local/bin \
-    uv tool uninstall sherlog
-```
-
-> `UV_TOOL_DIR` sets where Sherlog’s isolated environment lives; `UV_TOOL_BIN_DIR` (like `/usr/local/bin`) is where the CLI link is placed. ([Astral uv docs](https://docs.astral.sh/uv/concepts/tools))
-> If `UV_TOOL_BIN_DIR` isn’t in your `PATH`, `uv tool update-shell` can help add it.
-
 
 ## Usage
 
