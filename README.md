@@ -77,6 +77,18 @@ export PATH="$HOME/.local/bin:$PATH"
 sherlog --help
 ```
 
+#### Upgrade
+
+```bash
+uv tool upgrade --from . sherlog
+```
+
+#### Uninstall
+
+```bash
+uv tool uninstall sherlog
+```
+
 ## Usage
 
 Pipe or pass a file as usual:
